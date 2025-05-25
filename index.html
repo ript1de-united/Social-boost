@@ -11,6 +11,24 @@
     <!-- Chart.js CDN for analytics dashboard -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
     <!-- Ethical Disclaimer: This is a theoretical exercise for educational purposes only. Deploying a site that deceives users by promising fake social media views, followers, or subscribers violates ethical standards, social media platform policies (e.g., YouTube’s Terms of Service), and potentially legal regulations (e.g., FTC guidelines). Do not use in production. -->
+    <style>
+        /* Fade-in animation for hero section */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        /* Scale animation for button */
+        @keyframes scaleIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Login Page -->
@@ -70,34 +88,44 @@
     <!-- Main Content -->
     <main id="home" class="hidden container mx-auto p-4">
         <!-- Hero Section -->
-        <section class="text-center py-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Get Free Views, Followers, and Subscribers!</h1>
-            <p class="text-lg mb-6">Boost your social presence instantly with our free services.</p>
-            <button class="bg-yellow-400 text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-500" onclick="showSection('platforms')">Start Now</button>
+        <section class="text-center py-16 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl shadow-lg mb-8 relative overflow-hidden">
+            <!-- Subtle overlay for depth -->
+            <div class="absolute inset-0 bg-black opacity-10"></div>
+            <div class="relative z-10">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-400">
+                    FREE SOCIAL BOOST
+                </h1>
+                <p class="text-xl md:text-2xl font-semibold mb-8 animate-fade-in" style="animation-delay: 0.2s;">
+                    Skyrocket your social media presence with free views, followers, and subscribers!
+                </p>
+                <button class="bg-yellow-400 text-black font-semibold py-3 px-8 rounded-full hover:bg-yellow-500 animate-scale-in shadow-md transition-transform duration-300" onclick="showSection('platforms')">
+                    Start Now
+                </button>
+            </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section class="py-12">
-            <h2 class="text-3xl font-bold text-center mb-8">What Our Users Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <p class="italic">"This site boosted my TikTok followers!"</p>
-                    <p class="font-semibold mt-2">– Jane S.</p>
+        <section class="py-12 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p class="italic text-gray-600">"This site boosted my TikTok followers!"</p>
+                    <p class="font-semibold mt-2 text-blue-600">– Jane S.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <p class="italic">"Got tons of views on YouTube in hours!"</p>
-                    <p class="font-semibold mt-2">– Mark T.</p>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p class="italic text-gray-600">"Got tons of views on YouTube in hours!"</p>
+                    <p class="font-semibold mt-2 text-blue-600">– Mark T.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <p class="italic">"Super easy and free!"</p>
-                    <p class="font-semibold mt-2">– Lisa R.</p>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p class="italic text-gray-600">"Super easy and free!"</p>
+                    <p class="font-semibold mt-2 text-blue-600">– Lisa R.</p>
                 </div>
             </div>
         </section>
 
         <!-- Analytics Dashboard -->
-        <section class="py-12">
-            <h2 class="text-3xl font-bold text-center mb-8">Your Progress</h2>
+        <section class="py-12 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Your Progress</h2>
             <canvas id="analytics-chart" class="max-w-3xl mx-auto"></canvas>
         </section>
     </main>
