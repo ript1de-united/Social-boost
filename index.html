@@ -306,10 +306,9 @@
     <div id="ad-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg w-full max-w-md">
             <h3 class="text-xl font-semibold mb-4">Watching Ad <span id="ad-counter">1</span> of <span id="ad-total">1</span></h3>
-            <div class="bg-gray-200 p-4 text-center mb-4">
-                <p class="text-lg">Ad Content</p>
-                <a href="https://radishrarity.com/d0fhs05wp4?key=3cb222c202f1fa29ed62c0978891149f" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded mt-2 inline-block hover:bg-blue-600">View Ad</a>
-                <p class="text-sm text-gray-600 mt-2">Click the button to view the ad.</p>
+            <div id="ad-content" class="bg-gray-200 p-4 text-center mb-4 max-w-full">
+                <!-- Ad content will be dynamically inserted here -->
+                <p class="text-sm text-gray-600 mt-2">Advertisement</p>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-4">
                 <div id="progress-bar" class="bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
@@ -841,6 +840,7 @@
             if (!selectedService) return;
             const { ads, reward, type } = selectedService;
             const modal = document.getElementById('ad-modal');
+            const adContent = document.getElementById('ad-content');
             const progressBar = document.getElementById('progress-bar');
             const status = document.getElementById('ad-status');
             const closeButton = document.getElementById('close-ad');
@@ -856,6 +856,21 @@
                 adCounter.textContent = currentAd;
                 status.textContent = `Watching Ad ${currentAd} of ${ads}...`;
                 closeButton.classList.add('hidden');
+
+                // Insert 720x90 banner ad
+                adContent.innerHTML = `
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : 'dbe71477b191481249a1b6911fc08f94',
+                            'format' : 'iframe',
+                            'height' : 90,
+                            'width' : 728,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//radishrarity.com/dbe71477b191481249a1b6911fc08f94/invoke.js"></script>
+                    <p class="text-sm text-gray-600 mt-2">Advertisement</p>
+                `;
 
                 const duration = 30000; // 30s per ad
                 let progress = 0;
