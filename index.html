@@ -406,10 +406,16 @@
             discord: ['Server Joins', 'Reactions', 'Messages']
         };
         const rewards = [1, 5, 10, 20, 50, 100];
-        const usernames = ['XXX', 'sandj', 'CoolUser', 'StarGazer', 'TrendyVibes', 'PixelMaster', 'SunnyDay', 'NightOwl', 'AdventureSeeker', 'DreamChaser'];
+        const usernames = [
+            'Alex', 'Maya', 'Liam', 'Emma', 'Noah', 'Olivia', 'Ethan', 'Sophia',
+            'James', 'Ava', 'William', 'Isabella', 'Lucas', 'Mia', 'Henry', 'Charlotte',
+            'Benjamin', 'Amelia', 'Elijah', 'Harper'
+        ];
 
-        function generateRandomUsername() {
-            return usernames[Math.floor(Math.random() * usernames.length)];
+        function generateRandomUsername(usedNames) {
+            const availableNames = usernames.filter(name => !usedNames.includes(name));
+            if (availableNames.length === 0) return usernames[Math.floor(Math.random() * usernames.length)];
+            return availableNames[Math.floor(Math.random() * availableNames.length)];
         }
 
         function generateRandomPlatform() {
@@ -429,11 +435,13 @@
             const testimonials = document.getElementById('testimonials');
             if (!testimonials) return;
             testimonials.innerHTML = '';
+            const usedNames = [];
             for (let i = 0; i < 3; i++) {
                 const platform = generateRandomPlatform();
                 const action = generateRandomAction(platform);
                 const reward = generateRandomReward();
-                const username = generateRandomUsername();
+                const username = generateRandomUsername(usedNames);
+                usedNames.push(username);
                 const div = document.createElement('div');
                 div.className = 'bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow';
                 div.innerHTML = `
@@ -449,11 +457,13 @@
             const activity = document.getElementById('recent-activity');
             if (!activity) return;
             activity.innerHTML = '';
+            const usedNames = [];
             for (let i = 0; i < 3; i++) {
                 const platform = generateRandomPlatform();
                 const action = generateRandomAction(platform);
                 const reward = generateRandomReward();
-                const username = generateRandomUsername();
+                const username = generateRandomUsername(usedNames);
+                usedNames.push(username);
                 const div = document.createElement('div');
                 div.className = 'bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow';
                 div.innerHTML = `
