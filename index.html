@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Chart.js CDN for analytics dashboard -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
-    <!-- Ethical Disclaimer: This is a theoretical exercise for educational purposes only. Deploying a site that deceives users by promising fake social media views, followers, or subscribers violates ethical standards, social media platform policies (e.g., YouTube’s Terms of Service), and potentially legal regulations (e.g., FTC guidelines). Do not use in production. -->
     <style>
-        /* Fade-in animation for hero section */
+        /* Fade-in animation for elements */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -32,9 +31,11 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Login Page -->
-    <section id="login" class="container mx-auto p-4 flex items-center justify-center min-h-screen">
-        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-            <h2 class="text-3xl font-bold text-center mb-6">Sign In or Create Account</h2>
+    <section id="login" class="container mx-auto p-4 flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md relative z-10">
+            <h2 class="text-4xl font-extrabold text-center mb-6 animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-400">
+                FREE SOCIAL BOOST
+            </h2>
             <div id="login-form" class="">
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-2" for="email">Email</label>
@@ -45,8 +46,8 @@
                     <input type="password" id="password" class="w-full p-2 border rounded" placeholder="Enter your password">
                 </div>
                 <div class="flex space-x-4">
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full" onclick="signIn()">Sign In</button>
-                    <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full" onclick="createAccount()">Create Account</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full animate-scale-in" onclick="signIn()">Sign In</button>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full animate-scale-in" onclick="createAccount()">Create Account</button>
                 </div>
                 <p class="text-center mt-4">
                     <a href="#" class="text-blue-500 hover:underline" onclick="showResetPassword()">Forgot Password?</a>
@@ -69,6 +70,9 @@
                 </div>
                 <p id="reset-error" class="text-red-500 text-center mt-4 hidden"></p>
             </div>
+            <p class="text-center mt-8 text-gray-600 animate-fade-in" style="animation-delay: 0.4s;">
+                Boost your social media presence effortlessly with free views, followers, and subscribers across your favorite platforms!
+            </p>
         </div>
     </section>
 
@@ -89,7 +93,6 @@
     <main id="home" class="hidden container mx-auto p-4">
         <!-- Hero Section -->
         <section class="text-center py-16 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl shadow-lg mb-8 relative overflow-hidden">
-            <!-- Subtle overlay for depth -->
             <div class="absolute inset-0 bg-black opacity-10"></div>
             <div class="relative z-10">
                 <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-400">
@@ -107,20 +110,13 @@
         <!-- Testimonials Section -->
         <section class="py-12 bg-white rounded-xl shadow-md">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">What Our Users Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p class="italic text-gray-600">"This site boosted my TikTok followers!"</p>
-                    <p class="font-semibold mt-2 text-blue-600">– Jane S.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p class="italic text-gray-600">"Got tons of views on YouTube in hours!"</p>
-                    <p class="font-semibold mt-2 text-blue-600">– Mark T.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p class="italic text-gray-600">"Super easy and free!"</p>
-                    <p class="font-semibold mt-2 text-blue-600">– Lisa R.</p>
-                </div>
-            </div>
+            <div id="testimonials" class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4"></div>
+        </section>
+
+        <!-- Recent Activity (Fake Service Claims) -->
+        <section class="py-12 bg-white rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Recent Activity</h2>
+            <div id="recent-activity" class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4"></div>
         </section>
 
         <!-- Analytics Dashboard -->
@@ -178,7 +174,7 @@
             <h3 class="text-2xl font-semibold mb-4">Enter Your Social Media Link</h3>
             <input type="text" id="social-url" class="w-full p-2 border rounded" placeholder="Enter your post, profile, or server URL">
             <button class="bg-blue-500 text-white py-2 px-4 rounded mt-2 hover:bg-blue-600" onclick="enableServices()">Validate URL</button>
-            <p id="url-error" class="text-red-500 mt-2 hidden">Please enter a valid URL.</p>
+            <p id="url-error" class="text-red-500 mt-2 hidden"></p>
         </div>
         <!-- Free Services -->
         <div id="free-services" class="mb-8">
@@ -188,24 +184,37 @@
         </div>
         <!-- Paid Services -->
         <div id="paid-services" class="mb-8">
-            <h3 class="text-2xl font-semibold mb-4">Paid Services</h3>
-            <p class="text-gray-600 mb-4">Under Maintenance and will be available shortly in the future.</p>
+            <h3 class="text-2xl font-semibold mb-4">Paid Services (Coming Soon)</h3>
+            <p class="text-gray-600 mb-4">These premium services will be available in the future.</p>
             <div id="paid-services-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
         </div>
         <!-- Back Button -->
         <button class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" onclick="showSection('platforms')">Back to Platforms</button>
     </section>
 
+    <!-- Validation Modal -->
+    <div id="validation-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+            <h3 class="text-xl font-semibold mb-4">Validating URL...</h3>
+            <div class="bg-gray-200 p-4 text-center mb-4">
+                <p class="text-lg">Ad Playing...</p>
+                <p class="text-sm text-gray-600">Please wait while we validate your URL.</p>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+                <div id="validation-progress" class="bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
+            </div>
+            <p id="validation-status" class="text-center mt-4">Processing...</p>
+        </div>
+    </div>
+
     <!-- Ad Modal -->
     <div id="ad-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg w-full max-w-md">
             <h3 class="text-xl font-semibold mb-4">Watching Ad <span id="ad-counter">1</span> of <span id="ad-total">1</span></h3>
-            <!-- Placeholder Ad -->
             <div class="bg-gray-200 p-4 text-center mb-4">
                 <p class="text-lg">Ad Playing...</p>
                 <p class="text-sm text-gray-600">This is a placeholder ad. Please wait.</p>
             </div>
-            <!-- Progress Bar -->
             <div class="w-full bg-gray-200 rounded-full h-4">
                 <div id="progress-bar" class="bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
             </div>
@@ -233,7 +242,6 @@
     <footer id="footer" class="hidden bg-blue-600 text-white p-4">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <p>© 2025 Free Social Boost. All rights reserved.</p>
-            <!-- Social Sharing Buttons -->
             <div class="space-x-4 mt-4 md:mt-0">
                 <a href="#" class="hover:text-yellow-400"><i class="fab fa-facebook-f"></i> Share</a>
                 <a href="#" class="hover:text-yellow-400"><i class="fab fa-twitter"></i> Share</a>
@@ -243,16 +251,11 @@
     </footer>
 
     <script>
-        // Check login status on load
+        // Global variables
         let currentUser = localStorage.getItem('currentUser');
         let selectedService = null;
         let currentPlatform = null;
-
-        if (currentUser) {
-            showLoggedInState();
-        } else {
-            showSection('login');
-        }
+        let analyticsChart = null;
 
         // Platform-specific service configurations
         const platformServices = {
@@ -391,6 +394,82 @@
             }
         };
 
+        // Random testimonial and activity generator
+        const platforms = ['Facebook', 'YouTube', 'Twitter', 'Instagram', 'TikTok', 'LinkedIn', 'Discord'];
+        const actionTypes = {
+            facebook: ['Likes', 'Comments', 'Shares'],
+            youtube: ['Views', 'Likes', 'Subscribers'],
+            twitter: ['Likes', 'Retweets', 'Followers'],
+            instagram: ['Likes', 'Comments', 'Followers'],
+            tiktok: ['Views', 'Likes', 'Followers'],
+            linkedin: ['Connections', 'Likes', 'Shares'],
+            discord: ['Server Joins', 'Reactions', 'Messages']
+        };
+        const rewards = [1, 5, 10, 20, 50, 100];
+        const usernames = ['XXX', 'sandj', 'CoolUser', 'StarGazer', 'TrendyVibes', 'PixelMaster', 'SunnyDay', 'NightOwl', 'AdventureSeeker', 'DreamChaser'];
+
+        function generateRandomUsername() {
+            return usernames[Math.floor(Math.random() * usernames.length)];
+        }
+
+        function generateRandomPlatform() {
+            return platforms[Math.floor(Math.random() * platforms.length)].toLowerCase();
+        }
+
+        function generateRandomAction(platform) {
+            return actionTypes[platform][Math.floor(Math.random() * actionTypes[platform].length)];
+        }
+
+        function generateRandomReward() {
+            return rewards[Math.floor(Math.random() * rewards.length)];
+        }
+
+        // Populate testimonials
+        function updateTestimonials() {
+            const testimonials = document.getElementById('testimonials');
+            if (!testimonials) return;
+            testimonials.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                const platform = generateRandomPlatform();
+                const action = generateRandomAction(platform);
+                const reward = generateRandomReward();
+                const username = generateRandomUsername();
+                const div = document.createElement('div');
+                div.className = 'bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow';
+                div.innerHTML = `
+                    <p class="italic text-gray-600">"${username} gained ${reward} ${platform.charAt(0).toUpperCase() + platform.slice(1)} ${action}!"</p>
+                    <p class="font-semibold mt-2 text-blue-600">– ${username}</p>
+                `;
+                testimonials.appendChild(div);
+            }
+        }
+
+        // Populate recent activity
+        function updateRecentActivity() {
+            const activity = document.getElementById('recent-activity');
+            if (!activity) return;
+            activity.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                const platform = generateRandomPlatform();
+                const action = generateRandomAction(platform);
+                const reward = generateRandomReward();
+                const username = generateRandomUsername();
+                const div = document.createElement('div');
+                div.className = 'bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow';
+                div.innerHTML = `
+                    <p class="text-gray-600">${username} claimed ${reward} ${platform.charAt(0).toUpperCase() + platform.slice(1)} ${action}</p>
+                `;
+                activity.appendChild(div);
+            }
+            setTimeout(updateRecentActivity, 5000); // Update every 5 seconds
+        }
+
+        // Initialize homepage content
+        function initializeHomepage() {
+            updateTestimonials();
+            updateRecentActivity();
+        }
+
         // Show/hide sections
         function showSection(sectionId) {
             console.log(`Showing section: ${sectionId}`);
@@ -406,6 +485,7 @@
                 document.querySelectorAll('#home > section, #home > section > *').forEach(el => {
                     el.classList.remove('hidden');
                 });
+                initializeHomepage();
             }
         }
 
@@ -505,53 +585,96 @@
             document.getElementById('submit-service').classList.add('hidden');
             selectedService = null;
 
-            // Populate free services (displayed but disabled)
+            // Populate free services
             const freeServicesList = document.getElementById('free-services-list');
             freeServicesList.innerHTML = '';
-            platformServices[platform].free.forEach(service => {
-                const button = document.createElement('button');
-                button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed service-btn';
-                button.disabled = true;
-                button.dataset.ads = service.ads;
-                button.dataset.reward = service.reward;
-                button.dataset.type = service.type;
-                button.textContent = `Watch ${service.ads} Ad${service.ads > 1 ? 's' : ''} for ${service.reward} ${service.type}`;
-                button.onclick = () => selectService(service.ads, service.reward, service.type);
-                freeServicesList.appendChild(button);
-            });
+            if (platformServices[platform] && platformServices[platform].free) {
+                platformServices[platform].free.forEach(service => {
+                    const button = document.createElement('button');
+                    button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed service-btn';
+                    button.disabled = true;
+                    button.dataset.ads = service.ads;
+                    button.dataset.reward = service.reward;
+                    button.dataset.type = service.type;
+                    button.textContent = `Watch ${service.ads} Ad${service.ads > 1 ? 's' : ''} for ${service.reward} ${service.type}`;
+                    button.onclick = () => selectService(service.ads, service.reward, service.type);
+                    freeServicesList.appendChild(button);
+                });
+            }
             document.getElementById('free-services').classList.remove('hidden');
 
             // Populate paid services
             const paidServicesList = document.getElementById('paid-services-list');
             paidServicesList.innerHTML = '';
-            platformServices[platform].paid.forEach(service => {
-                const button = document.createElement('button');
-                button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed';
-                button.disabled = true;
-                button.textContent = `$${service.price} for ${service.reward} ${service.type}`;
-                paidServicesList.appendChild(button);
-            });
+            if (platformServices[platform] && platformServices[platform].paid) {
+                platformServices[platform].paid.forEach(service => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-gray-100 p-4 rounded-lg';
+                    div.innerHTML = `<p class="text-gray-600">Available Soon: $${service.price} for ${service.reward} ${service.type}</p>`;
+                    paidServicesList.appendChild(div);
+                });
+            }
         }
 
         // Validate URL and enable services
         function enableServices() {
-            const url = document.getElementById('social-url').value;
+            const url = document.getElementById('social-url').value.trim();
             const error = document.getElementById('url-error');
             const serviceButtons = document.querySelectorAll('.service-btn');
-            if (url.trim()) {
-                error.classList.add('hidden');
-                serviceButtons.forEach(button => {
-                    button.className = 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn';
-                    button.disabled = false;
-                });
-            } else {
-                error.textContent = 'Please enter a valid URL.';
+            const modal = document.getElementById('validation-modal');
+            const progressBar = document.getElementById('validation-progress');
+            const status = document.getElementById('validation-status');
+            const platformPatterns = {
+                facebook: /facebook\.com|fb\.com/,
+                youtube: /youtube\.com|youtu\.be/,
+                twitter: /twitter\.com|x\.com/,
+                instagram: /instagram\.com/,
+                tiktok: /tiktok\.com/,
+                linkedin: /linkedin\.com/,
+                discord: /discord\.com|discord\.gg/
+            };
+
+            if (!url) {
+                error.textContent = 'Please enter a URL.';
                 error.classList.remove('hidden');
                 serviceButtons.forEach(button => {
                     button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed service-btn';
                     button.disabled = true;
                 });
+                return;
             }
+
+            // Show validation modal
+            modal.classList.remove('hidden');
+            progressBar.style.width = '0%';
+            status.textContent = 'Validating URL...';
+
+            const duration = 10000; // 10s validation
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 100 / (duration / 100);
+                progressBar.style.width = `${Math.min(progress, 100)}%`;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    modal.classList.add('hidden');
+
+                    // Validate URL
+                    if (!platformPatterns[currentPlatform].test(url)) {
+                        error.textContent = `Please enter a valid ${currentPlatform.charAt(0).toUpperCase() + currentPlatform.slice(1)} URL.`;
+                        error.classList.remove('hidden');
+                        serviceButtons.forEach(button => {
+                            button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed service-btn';
+                            button.disabled = true;
+                        });
+                    } else {
+                        error.classList.add('hidden');
+                        serviceButtons.forEach(button => {
+                            button.className = 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn';
+                            button.disabled = false;
+                        });
+                    }
+                }
+            }, 100);
         }
 
         // Select service
@@ -615,11 +738,11 @@
                         clearInterval(interval);
                         currentAd++;
                         if (currentAd <= ads) {
-                            setTimeout(playAd, 500); // Short pause before next ad
+                            setTimeout(playAd, 500);
                         } else {
                             closeAd();
                             showSuccess(reward, type);
-                            updateAnalytics(reward, type);
+                            updateAnalytics(reward, type, currentPlatform);
                         }
                     }
                 }, 100);
@@ -647,38 +770,74 @@
             showSection('platform-page');
         }
 
-        // Fake analytics chart
-        try {
-            const ctx = document.getElementById('analytics-chart').getContext('2d');
-            const analyticsChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
-                    datasets: [
-                        {
-                            label: 'Engagement Gained',
-                            data: [0, 0, 0, 0, 0],
-                            borderColor: 'blue',
-                            fill: false
+        // Analytics chart
+        function initializeAnalytics() {
+            try {
+                const ctx = document.getElementById('analytics-chart').getContext('2d');
+                analyticsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [], // Will be populated with service types
+                        datasets: [{
+                            label: 'Services Claimed',
+                            data: [],
+                            backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
+                            x: { title: { display: true, text: 'Service Type' } }
                         }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
                     }
-                }
-            });
+                });
 
-            function updateAnalytics(reward, type) {
-                const newData = analyticsChart.data.datasets[0].data.map(val => val + Math.floor(reward * (0.5 + Math.random())));
-                analyticsChart.data.datasets[0].data = newData;
+                // Load user services from localStorage
+                const userServices = JSON.parse(localStorage.getItem(`services_${currentUser}`) || '[]');
+                userServices.forEach(service => {
+                    const label = `${service.platform.charAt(0).toUpperCase() + service.platform.slice(1)} ${service.type}`;
+                    const index = analyticsChart.data.labels.indexOf(label);
+                    if (index === -1) {
+                        analyticsChart.data.labels.push(label);
+                        analyticsChart.data.datasets[0].data.push(service.reward);
+                    } else {
+                        analyticsChart.data.datasets[0].data[index] += service.reward;
+                    }
+                });
                 analyticsChart.update();
+            } catch (error) {
+                console.error('Chart.js initialization failed:', error);
             }
-        } catch (error) {
-            console.error('Chart.js initialization failed:', error);
         }
+
+        function updateAnalytics(reward, type, platform) {
+            if (!analyticsChart || !currentUser) return;
+            const userServices = JSON.parse(localStorage.getItem(`services_${currentUser}`) || '[]');
+            userServices.push({ platform, type, reward });
+            localStorage.setItem(`services_${currentUser}`, JSON.stringify(userServices));
+
+            const label = `${platform.charAt(0).toUpperCase() + platform.slice(1)} ${type}`;
+            const index = analyticsChart.data.labels.indexOf(label);
+            if (index === -1) {
+                analyticsChart.data.labels.push(label);
+                analyticsChart.data.datasets[0].data.push(reward);
+            } else {
+                analyticsChart.data.datasets[0].data[index] += reward;
+            }
+            analyticsChart.update();
+        }
+
+        // Initialize on page load
+        if (currentUser) {
+            showLoggedInState();
+            initializeAnalytics();
+        } else {
+            showSection('login');
+        }
+        initializeHomepage();
 
         // Initialize countdown
         try {
