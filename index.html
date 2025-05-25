@@ -17,19 +17,40 @@
     <section id="login" class="container mx-auto p-4 flex items-center justify-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
             <h2 class="text-3xl font-bold text-center mb-6">Sign In or Create Account</h2>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-2" for="email">Email</label>
-                <input type="email" id="email" class="w-full p-2 border rounded" placeholder="Enter your email">
+            <div id="login-form" class="">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2" for="email">Email</label>
+                    <input type="email" id="email" class="w-full p-2 border rounded" placeholder="Enter your email">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2" for="password">Password</label>
+                    <input type="password" id="password" class="w-full p-2 border rounded" placeholder="Enter your password">
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full" onclick="signIn()">Sign In</button>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full" onclick="createAccount()">Create Account</button>
+                </div>
+                <p class="text-center mt-4">
+                    <a href="#" class="text-blue-500 hover:underline" onclick="showResetPassword()">Forgot Password?</a>
+                </p>
+                <p id="login-error" class="text-red-500 text-center mt-4 hidden"></p>
             </div>
-            <div class="mb-6">
-                <label class="block text-sm font-medium mb-2" for="password">Password</label>
-                <input type="password" id="password" class="w-full p-2 border rounded" placeholder="Enter your password">
+            <div id="reset-password-form" class="hidden">
+                <h3 class="text-2xl font-bold text-center mb-6">Reset Password</h3>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2" for="reset-email">Email</label>
+                    <input type="email" id="reset-email" class="w-full p-2 border rounded" placeholder="Enter your email">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2" for="new-password">New Password</label>
+                    <input type="password" id="new-password" class="w-full p-2 border rounded" placeholder="Enter new password">
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full" onclick="resetPassword()">Reset Password</button>
+                    <button class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full" onclick="showLoginForm()">Back to Login</button>
+                </div>
+                <p id="reset-error" class="text-red-500 text-center mt-4 hidden"></p>
             </div>
-            <div class="flex space-x-4">
-                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full" onclick="signIn()">Sign In</button>
-                <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full" onclick="createAccount()">Create Account</button>
-            </div>
-            <p id="login-error" class="text-red-500 text-center mt-4 hidden"></p>
         </div>
     </section>
 
@@ -84,14 +105,14 @@
     <!-- Social Media Platforms -->
     <section id="platforms" class="hidden container mx-auto p-4">
         <h2 class="text-3xl font-bold text-center mb-8">Choose a Platform</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
             <div class="bg-white p-6 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg" onclick="showPlatform('facebook')">
                 <i class="fab fa-facebook-f text-4xl text-blue-600 mb-2"></i>
                 <p class="font-semibold">Facebook</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg" onclick="showPlatform('youtube')">
                 <i class="fab fa-youtube text-4xl text-red-600 mb-2"></i>
-                <p class="fraction">YouTube</p>
+                <p class="font-semibold">YouTube</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg" onclick="showPlatform('twitter')">
                 <i class="fab fa-twitter text-4xl text-blue-400 mb-2"></i>
@@ -105,6 +126,14 @@
                 <i class="fab fa-tiktok text-4xl text-black mb-2"></i>
                 <p class="font-semibold">TikTok</p>
             </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg" onclick="showPlatform('linkedin')">
+                <i class="fab fa-linkedin text-4xl text-blue-700 mb-2"></i>
+                <p class="font-semibold">LinkedIn</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg" onclick="showPlatform('discord')">
+                <i class="fab fa-discord text-4xl text-purple-600 mb-2"></i>
+                <p class="font-semibold">Discord</p>
+            </div>
         </div>
     </section>
 
@@ -113,33 +142,27 @@
         <h2 id="platform-title" class="text-3xl font-bold text-center mb-8"></h2>
         <!-- Countdown Timer -->
         <div class="text-center mb-8">
-            <p class="text-lg font-semibold">Limited Offer: Free Views Available for Next 24 Hours!</p>
+            <p class="text-lg font-semibold">Limited Offer: Free Services Available for Next 24 Hours!</p>
             <p id="countdown" class="text-2xl font-bold"></p>
         </div>
         <!-- URL Input Form -->
         <div class="mb-8">
             <h3 class="text-2xl font-semibold mb-4">Enter Your Social Media Link</h3>
-            <input type="text" id="social-url" class="w-full p-2 border rounded" placeholder="Enter your post or profile URL">
+            <input type="text" id="social-url" class="w-full p-2 border rounded" placeholder="Enter your post, profile, or server URL">
             <button class="bg-blue-500 text-white py-2 px-4 rounded mt-2 hover:bg-blue-600" onclick="enableServices()">Validate URL</button>
             <p id="url-error" class="text-red-500 mt-2 hidden">Please enter a valid URL.</p>
         </div>
         <!-- Free Services -->
-        <div id="free-services" class="mb-8 hidden">
+        <div id="free-services" class="mb-8">
             <h3 class="text-2xl font-semibold mb-4">Free Services</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn" data-ads="1" data-reward="10" data-type="views" onclick="selectService(1, 10, 'views')">Watch 1 Ad for 10 Views</button>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn" data-ads="2" data-reward="20" data-type="views" onclick="selectService(2, 20, 'views')">Watch 2 Ads for 20 Views</button>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn" data-ads="3" data-reward="50" data-type="views" onclick="selectService(3, 50, 'views')">Watch 3 Ads for 50 Views</button>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn" data-ads="1" data-reward="5" data-type="followers" onclick="selectService(1, 5, 'followers')">Watch 1 Ad for 5 Followers/Subscribers</button>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn" data-ads="2" data-reward="10" data-type="followers" onclick="selectService(2, 10, 'followers')">Watch 2 Ads for 10 Followers/Subscribers</button>
-            </div>
+            <div id="free-services-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
             <button id="submit-service" class="bg-green-500 text-white py-2 px-4 rounded mt-4 hover:bg-green-600 hidden" onclick="startAd()">Submit</button>
         </div>
         <!-- Paid Services -->
-        <div class="mb-8">
+        <div id="paid-services" class="mb-8">
             <h3 class="text-2xl font-semibold mb-4">Paid Services</h3>
-            <p class="text-gray-600">Under Maintenance. Try our free services above!</p>
-            <button class="bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed" disabled>Coming Soon</button>
+            <p class="text-gray-600 mb-4">Under Maintenance and will be available shortly in the future.</p>
+            <div id="paid-services-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
         </div>
         <!-- Back Button -->
         <button class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600" onclick="showSection('platforms')">Back to Platforms</button>
@@ -148,7 +171,7 @@
     <!-- Ad Modal -->
     <div id="ad-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-4">Watching Ad...</h3>
+            <h3 class="text-xl font-semibold mb-4">Watching Ad <span id="ad-counter">1</span> of <span id="ad-total">1</span></h3>
             <!-- Placeholder Ad -->
             <div class="bg-gray-200 p-4 text-center mb-4">
                 <p class="text-lg">Ad Playing...</p>
@@ -195,6 +218,7 @@
         // Check login status on load
         let currentUser = localStorage.getItem('currentUser');
         let selectedService = null;
+        let currentPlatform = null;
 
         if (currentUser) {
             showLoggedInState();
@@ -202,9 +226,146 @@
             showSection('login');
         }
 
+        // Platform-specific service configurations
+        const platformServices = {
+            facebook: {
+                free: [
+                    { ads: 2, reward: 10, type: 'Likes' },
+                    { ads: 3, reward: 20, type: 'Likes' },
+                    { ads: 4, reward: 50, type: 'Likes' },
+                    { ads: 5, reward: 100, type: 'Likes' },
+                    { ads: 2, reward: 5, type: 'Comments' },
+                    { ads: 3, reward: 15, type: 'Comments' },
+                    { ads: 4, reward: 30, type: 'Comments' },
+                    { ads: 2, reward: 10, type: 'Shares' },
+                    { ads: 3, reward: 20, type: 'Shares' }
+                ],
+                paid: [
+                    { price: 1, reward: 100, type: 'Likes' },
+                    { price: 5, reward: 500, type: 'Likes' },
+                    { price: 2, reward: 50, type: 'Comments' },
+                    { price: 3, reward: 100, type: 'Shares' }
+                ]
+            },
+            youtube: {
+                free: [
+                    { ads: 2, reward: 10, type: 'Views' },
+                    { ads: 3, reward: 20, type: 'Views' },
+                    { ads: 4, reward: 50, type: 'Views' },
+                    { ads: 5, reward: 100, type: 'Views' },
+                    { ads: 2, reward: 5, type: 'Likes' },
+                    { ads: 3, reward: 15, type: 'Likes' },
+                    { ads: 4, reward: 30, type: 'Likes' },
+                    { ads: 2, reward: 5, type: 'Subscribers' },
+                    { ads: 3, reward: 10, type: 'Subscribers' }
+                ],
+                paid: [
+                    { price: 1, reward: 100, type: 'Views' },
+                    { price: 5, reward: 500, type: 'Views' },
+                    { price: 2, reward: 50, type: 'Likes' },
+                    { price: 3, reward: 100, type: 'Subscribers' }
+                ]
+            },
+            twitter: {
+                free: [
+                    { ads: 2, reward: 10, type: 'Likes' },
+                    { ads: 3, reward: 20, type: 'Likes' },
+                    { ads: 4, reward: 50, type: 'Likes' },
+                    { ads: 5, reward: 100, type: 'Likes' },
+                    { ads: 2, reward: 5, type: 'Retweets' },
+                    { ads: 3, reward: 15, type: 'Retweets' },
+                    { ads: 4, reward: 30, type: 'Retweets' },
+                    { ads: 2, reward: 5, type: 'Followers' },
+                    { ads: 3, reward: 10, type: 'Followers' }
+                ],
+                paid: [
+                    { price: 1, reward: 100, type: 'Likes' },
+                    { price: 5, reward: 500, type: 'Likes' },
+                    { price: 2, reward: 50, type: 'Retweets' },
+                    { price: 3, reward: 100, type: 'Followers' }
+                ]
+            },
+            instagram: {
+                free: [
+                    { ads: 2, reward: 10, type: 'Likes' },
+                    { ads: 3, reward: 20, type: 'Likes' },
+                    { ads: 4, reward: 50, type: 'Likes' },
+                    { ads: 5, reward: 100, type: 'Likes' },
+                    { ads: 2, reward: 5, type: 'Comments' },
+                    { ads: 3, reward: 15, type: 'Comments' },
+                    { ads: 4, reward: 30, type: 'Comments' },
+                    { ads: 2, reward: 5, type: 'Followers' },
+                    { ads: 3, reward: 10, type: 'Followers' }
+                ],
+                paid: [
+                    { price: 1, reward: 100, type: 'Likes' },
+                    { price: 5, reward: 500, type: 'Likes' },
+                    { price: 2, reward: 50, type: 'Comments' },
+                    { price: 3, reward: 100, type: 'Followers' }
+                ]
+            },
+            tiktok: {
+                free: [
+                    { ads: 2, reward: 10, type: 'Views' },
+                    { ads: 3, reward: 20, type: 'Views' },
+                    { ads: 4, reward: 50, type: 'Views' },
+                    { ads: 5, reward: 100, type: 'Views' },
+                    { ads: 2, reward: 5, type: 'Likes' },
+                    { ads: 3, reward: 15, type: 'Likes' },
+                    { ads: 4, reward: 30, type: 'Likes' },
+                    { ads: 2, reward: 5, type: 'Followers' },
+                    { ads: 3, reward: 10, type: 'Followers' }
+                ],
+                paid: [
+                    { price: 1, reward: 100, type: 'Views' },
+                    { price: 5, reward: 500, type: 'Views' },
+                    { price: 2, reward: 50, type: 'Likes' },
+                    { price: 3, reward: 100, type: 'Followers' }
+                ]
+            },
+            linkedin: {
+                free: [
+                    { ads: 2, reward: 5, type: 'Connections' },
+                    { ads: 3, reward: 10, type: 'Connections' },
+                    { ads: 4, reward: 20, type: 'Connections' },
+                    { ads: 5, reward: 50, type: 'Connections' },
+                    { ads: 2, reward: 5, type: 'Likes' },
+                    { ads: 3, reward: 15, type: 'Likes' },
+                    { ads: 4, reward: 30, type: 'Likes' },
+                    { ads: 2, reward: 5, type: 'Shares' },
+                    { ads: 3, reward: 10, type: 'Shares' }
+                ],
+                paid: [
+                    { price: 2, reward: 50, type: 'Connections' },
+                    { price: 5, reward: 100, type: 'Connections' },
+                    { price: 1, reward: 50, type: 'Likes' },
+                    { price: 3, reward: 50, type: 'Shares' }
+                ]
+            },
+            discord: {
+                free: [
+                    { ads: 2, reward: 2, type: 'Server Joins' },
+                    { ads: 3, reward: 5, type: 'Server Joins' },
+                    { ads: 4, reward: 10, type: 'Server Joins' },
+                    { ads: 5, reward: 20, type: 'Server Joins' },
+                    { ads: 2, reward: 5, type: 'Reactions' },
+                    { ads: 3, reward: 15, type: 'Reactions' },
+                    { ads: 4, reward: 30, type: 'Reactions' },
+                    { ads: 2, reward: 5, type: 'Messages' },
+                    { ads: 3, reward: 10, type: 'Messages' }
+                ],
+                paid: [
+                    { price: 2, reward: 20, type: 'Server Joins' },
+                    { price: 5, reward: 50, type: 'Server Joins' },
+                    { price: 1, reward: 50, type: 'Reactions' },
+                    { price: 3, reward: 50, type: 'Messages' }
+                ]
+            }
+        };
+
         // Show/hide sections
         function showSection(sectionId) {
-            console.log(`Showing section: ${sectionId}`); // Debug log
+            console.log(`Showing section: ${sectionId}`);
             document.querySelectorAll('#home, #platforms, #platform-page, #about, #login, #nav, #footer').forEach(section => {
                 section.classList.add('hidden');
             });
@@ -213,7 +374,6 @@
                 document.getElementById('nav').classList.remove('hidden');
                 document.getElementById('footer').classList.remove('hidden');
             }
-            // Ensure home section content is visible
             if (sectionId === 'home') {
                 document.querySelectorAll('#home > section, #home > section > *').forEach(el => {
                     el.classList.remove('hidden');
@@ -257,10 +417,45 @@
             }
         }
 
+        function showResetPassword() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('reset-password-form').classList.remove('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+        }
+
+        function showLoginForm() {
+            document.getElementById('reset-password-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('reset-error').classList.add('hidden');
+            document.getElementById('reset-email').value = '';
+            document.getElementById('new-password').value = '';
+        }
+
+        function resetPassword() {
+            const email = document.getElementById('reset-email').value;
+            const newPassword = document.getElementById('new-password').value;
+            const error = document.getElementById('reset-error');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (users[email]) {
+                if (newPassword) {
+                    users[email].password = newPassword;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    showLoginForm();
+                    alert('Password reset successfully. Please sign in with your new password.');
+                } else {
+                    error.textContent = 'Please enter a new password.';
+                    error.classList.remove('hidden');
+                }
+            } else {
+                error.textContent = 'Email not found.';
+                error.classList.remove('hidden');
+            }
+        }
+
         function showLoggedInState() {
             document.getElementById('welcome-message').textContent = `Welcome, ${currentUser}!`;
             showSection('home');
-            console.log('Logged in, showing home page'); // Debug log
+            console.log('Logged in, showing home page');
         }
 
         function logout() {
@@ -274,30 +469,70 @@
 
         // Show platform-specific page
         function showPlatform(platform) {
+            currentPlatform = platform;
             showSection('platform-page');
             document.getElementById('platform-title').textContent = `${platform.charAt(0).toUpperCase() + platform.slice(1)} Services`;
             document.getElementById('social-url').value = '';
-            document.getElementById('free-services').classList.add('hidden');
-            document.getElementById('submit-service').classList.add('hidden');
             document.getElementById('url-error').classList.add('hidden');
+            document.getElementById('submit-service').classList.add('hidden');
             selectedService = null;
+
+            // Populate free services (displayed but disabled)
+            const freeServicesList = document.getElementById('free-services-list');
+            freeServicesList.innerHTML = '';
+            platformServices[platform].free.forEach(service => {
+                const button = document.createElement('button');
+                button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed service-btn';
+                button.disabled = true;
+                button.dataset.ads = service.ads;
+                button.dataset.reward = service.reward;
+                button.dataset.type = service.type;
+                button.textContent = `Watch ${service.ads} Ad${service.ads > 1 ? 's' : ''} for ${service.reward} ${service.type}`;
+                button.onclick = () => selectService(service.ads, service.reward, service.type);
+                freeServicesList.appendChild(button);
+            });
+            document.getElementById('free-services').classList.remove('hidden');
+
+            // Populate paid services
+            const paidServicesList = document.getElementById('paid-services-list');
+            paidServicesList.innerHTML = '';
+            platformServices[platform].paid.forEach(service => {
+                const button = document.createElement('button');
+                button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed';
+                button.disabled = true;
+                button.textContent = `$${service.price} for ${service.reward} ${service.type}`;
+                paidServicesList.appendChild(button);
+            });
         }
 
         // Validate URL and enable services
         function enableServices() {
             const url = document.getElementById('social-url').value;
             const error = document.getElementById('url-error');
+            const serviceButtons = document.querySelectorAll('.service-btn');
             if (url.trim()) {
-                document.getElementById('free-services').classList.remove('hidden');
                 error.classList.add('hidden');
+                serviceButtons.forEach(button => {
+                    button.className = 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 service-btn';
+                    button.disabled = false;
+                });
             } else {
                 error.textContent = 'Please enter a valid URL.';
                 error.classList.remove('hidden');
+                serviceButtons.forEach(button => {
+                    button.className = 'bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed service-btn';
+                    button.disabled = true;
+                });
             }
         }
 
         // Select service
         function selectService(ads, reward, type) {
+            if (!document.getElementById('social-url').value.trim()) {
+                document.getElementById('url-error').textContent = 'Please enter a valid URL.';
+                document.getElementById('url-error').classList.remove('hidden');
+                return;
+            }
             selectedService = { ads, reward, type };
             document.getElementById('submit-service').classList.remove('hidden');
         }
@@ -330,23 +565,39 @@
             const progressBar = document.getElementById('progress-bar');
             const status = document.getElementById('ad-status');
             const closeButton = document.getElementById('close-ad');
-            modal.classList.remove('hidden');
-            progressBar.style.width = '0%';
-            status.textContent = `Watching ${ads} ad(s)...`;
-            closeButton.classList.add('hidden');
+            const adCounter = document.getElementById('ad-counter');
+            const adTotal = document.getElementById('ad-total');
+            let currentAd = 1;
 
-            const duration = ads * 30000; // 30s per ad
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 100 / (duration / 100);
-                progressBar.style.width = `${Math.min(progress, 100)}%`;
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    closeAd();
-                    showSuccess(reward, type);
-                    updateAnalytics(reward, type);
-                }
-            }, 100);
+            modal.classList.remove('hidden');
+            adTotal.textContent = ads;
+
+            function playAd() {
+                progressBar.style.width = '0%';
+                adCounter.textContent = currentAd;
+                status.textContent = `Watching Ad ${currentAd} of ${ads}...`;
+                closeButton.classList.add('hidden');
+
+                const duration = 30000; // 30s per ad
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 100 / (duration / 100);
+                    progressBar.style.width = `${Math.min(progress, 100)}%`;
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        currentAd++;
+                        if (currentAd <= ads) {
+                            setTimeout(playAd, 500); // Short pause before next ad
+                        } else {
+                            closeAd();
+                            showSuccess(reward, type);
+                            updateAnalytics(reward, type);
+                        }
+                    }
+                }, 100);
+            }
+
+            playAd();
         }
 
         // Close ad modal
@@ -377,7 +628,7 @@
                     labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
                     datasets: [
                         {
-                            label: 'Views/Followers Gained',
+                            label: 'Engagement Gained',
                             data: [0, 0, 0, 0, 0],
                             borderColor: 'blue',
                             fill: false
